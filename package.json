@@ -21,5 +21,8 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "./node_modules/.bin/eslint  src --fix"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }
