@@ -21,7 +21,9 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "lint": "./node_modules/.bin/eslint  src --fix"
+    "lint": "./node_modules/.bin/eslint  src --fix",
+    "start": "node src/index.js",
+    "develop": "nodemon src/index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0"
