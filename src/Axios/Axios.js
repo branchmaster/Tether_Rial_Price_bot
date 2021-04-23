@@ -1,7 +1,6 @@
-const path = require("path");
-const axios = require(path.join(__dirname, "./../Axios/Axios"));
+const axios = require("axios");
 const API = process.env.API;
 module.exports = axios.create({
   baseURL: API,
-  timeout: 1000,
+  timeout: 10000,
 });
