@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const bot = require(path.join(__dirname, "app.js"));
-const { MODE, URL, ROBOT_TOKEN, API } = process.env;
+const { MODE, URL, ROBOT_TOKEN, API, PORT } = process.env;
 
 if (!URL) {
   throw Error("your not set URL on .env file");
@@ -19,6 +19,9 @@ if (!API) {
 if (MODE === "develop") {
   const { Telegraf } = require("telegraf");
   bot.use(Telegraf.log());
+} else {
+  bot.telegram.setWebhook(`${URL}/bot${ROBOT_TOKEN}`);
+  bot.startWebhook(`/bot${ROBOT_TOKEN}`, null, PORT);
 }
 bot.launch().then(() => {
   console.log("bot started !");
