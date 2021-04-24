@@ -1,4 +1,4 @@
-# A telegram robot to get the price tether
+<h1> A telegram robot to get the price tether </h1>
 
 <h3>
   this bot get price from
@@ -14,7 +14,7 @@
 </ol>
 <a href="https://t.me/Tether_price_bot"> see simple </a>
 <div dir="rtl">
-  # روبات گرفتن قیمت قیمت تتر
+  <h1> روبات گرفتن قیمت قیمت تتر </h1>
 
   <h3>
     این روبات برای گرفتن قیمت
