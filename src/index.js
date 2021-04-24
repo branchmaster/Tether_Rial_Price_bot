@@ -1,9 +1,11 @@
 const path = require("path");
 
 const dotenv = require("dotenv");
+const express = require("express");
 dotenv.config();
 
 const bot = require(path.join(__dirname, "app.js"));
+const app = express();
 const { MODE, URL, ROBOT_TOKEN, API } = process.env;
 const PORT = process.env.PORT || 3000;
 if (!URL) {
@@ -19,10 +21,24 @@ if (!API) {
 if (MODE === "develop") {
   const { Telegraf } = require("telegraf");
   bot.use(Telegraf.log());
+  bot.launch().then(() => {
+    console.log("bot started !");
+  });
 } else {
   bot.telegram.setWebhook(`${URL}/bot${ROBOT_TOKEN}`);
-  bot.startWebhook(`/bot${ROBOT_TOKEN}`, null, PORT);
+  app.use(bot.webhookCallback(`/bot${ROBOT_TOKEN}`));
+  app.get("/", (req, res, next) => {
+    bot
+      .launch()
+      .then(() => {
+        res.end("welcome to bot ");
+        next();
+      })
+      .catch(() => {
+        res.end("have a err");
+      });
+  });
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 }
-bot.launch().then(() => {
-  console.log("bot started !");
-});
