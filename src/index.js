@@ -4,8 +4,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const bot = require(path.join(__dirname, "app.js"));
-const { MODE, URL, ROBOT_TOKEN, API, PORT } = process.env;
-
+const { MODE, URL, ROBOT_TOKEN, API } = process.env;
+const PORT = process.env.PORT || 3000;
 if (!URL) {
   throw Error("your not set URL on .env file");
 }
